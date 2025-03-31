@@ -1,5 +1,5 @@
 from database.database import Database, User
-from courses.business_planning.business_planning import BusinessPlanningModule
+
 
 def display_welcome():
     print("\n" + "="*50)
@@ -68,11 +68,8 @@ def main_menu(user_manager, db):  # Add db parameter here
             print("\nFinancial Literacy module selected")
         elif choice == 2:
             print("\nBudgeting & Savings module selected")
-
         elif choice == 3:
-            business_module = BusinessPlanningModule(db, user_manager.get_current_user()['id'])
-            business_module.run()
-            # Implement module functionality
+            display_chapters(user_manager, "Business Planning & Management")
         elif choice == 4:
             display_chapters(user_manager, "Accessing Funding & Loans")
         elif choice == 6:

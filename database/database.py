@@ -164,7 +164,7 @@ class Database:
             self.connection = mysql.connector.connect(
                 host="127.0.0.1",
                 user="root",
-                password="", # replace with ur password
+                password="dearmama", # replace with ur password
                 port=3306,
                 database="igire",  # Connect directly to our database
                 use_pure=True,
