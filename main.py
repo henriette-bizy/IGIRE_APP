@@ -70,6 +70,8 @@ def main_menu(user_manager):
         elif choice == 2:
             print("\nBudgeting & Savings module selected")
             # Implement module functionality
+        elif choice == 4:
+            display_chapters(user_manager, "Accessing Funding & Loans")
         elif choice == 7:
             user = user_manager.get_current_user()
             print("\n" + "-"*50)
@@ -88,6 +90,40 @@ def main_menu(user_manager):
             break
         else:
             print("Module coming soon!")
+            
+def display_chapters(user_manager, module_name):
+    print(f"\nFetching chapters for {module_name}...\n")
+    chapters = user_manager.get_chapters_by_module(module_name)
+
+    if not chapters:
+        print("No chapters found.")
+        return
+    
+    for ch in chapters:
+        print(f"{ch['chapter_number']}. {ch['title']}")
+
+    choice = get_user_input("\nEnter the chapter number to read or 0 to go back: ", int)
+
+    if choice == 0:
+        return
+
+    selected_chapter = next((ch for ch in chapters if ch["chapter_number"] == choice), None)
+    
+    if selected_chapter:
+        display_chapter_content(user_manager, selected_chapter["id"])
+    else:
+        print("Invalid choice.")
+
+def display_chapter_content(user_manager, chapter_id):
+    print("\nLoading content...\n")
+    content = user_manager.get_content_by_chapter(chapter_id)
+
+    if not content:
+        print("No content available.")
+        return
+    
+    for item in content:
+        print(f"[{item['content_type'].capitalize()}] {item['content_text']}\n")
 
 def main():
     db = Database()
@@ -115,5 +151,5 @@ def main():
     finally:
         db.disconnect()
 
-if __name__ == "__main__":
+if __name__ == "__main__":  
     main()

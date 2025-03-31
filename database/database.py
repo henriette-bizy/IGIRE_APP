@@ -97,6 +97,25 @@ class User:
         except Error as e:
             print(f"Error fetching user data: {e}")
             return None
+        
+    def get_chapters_by_module(self, module_name):
+        query = """
+        SELECT chapters.id, chapters.chapter_number, chapters.title 
+        FROM chapters 
+        JOIN modules ON chapters.module_id = modules.id 
+        WHERE modules.name = %s
+        ORDER BY chapters.chapter_number;
+        """
+        return self.db.fetch_all(query, (module_name,))
+
+    def get_content_by_chapter(self, chapter_id):
+        query = """
+        SELECT content_type, content_text 
+        FROM content 
+        WHERE chapter_id = %s 
+        ORDER BY display_order;
+        """
+        return self.db.fetch_all(query, (chapter_id,))
 
 
 class Database:
@@ -110,7 +129,7 @@ class Database:
             self.connection = mysql.connector.connect(
                 host="127.0.0.1",
                 user="root",
-                password="qwerty@12345", # replace with ur password
+                password="", # replace with ur password
                 port=3306,
                 database="igire",  # Connect directly to our database
                 use_pure=True,
@@ -137,3 +156,12 @@ class Database:
         if self.connection and self.connection.is_connected():
             self.connection.close()
             print("MySQL connection closed")
+
+    def fetch_all(self, query, params=None):
+        cursor = self.connection.cursor(dictionary=True)  # Ensure results are buffered
+        try:
+            cursor.execute(query, params)
+            result = cursor.fetchall()
+            return result
+        finally:
+            cursor.close() 
