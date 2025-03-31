@@ -11,3 +11,45 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+CREATE TABLE modules (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Chapters table (new)
+CREATE TABLE chapters (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    module_id INT NOT NULL,
+    chapter_number INT NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    description TEXT,
+    FOREIGN KEY (module_id) REFERENCES modules(id),
+    UNIQUE KEY (module_id, chapter_number)
+);
+
+-- Content table (new)
+CREATE TABLE content (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    chapter_id INT NOT NULL,
+    content_type ENUM('text', 'example', 'tip') NOT NULL,
+    content_text TEXT NOT NULL,
+    display_order INT NOT NULL,
+    FOREIGN KEY (chapter_id) REFERENCES chapters(id)
+);
+
+-- Updated questions table (now links to chapters)
+CREATE TABLE questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    chapter_id INT NOT NULL,
+    question_text TEXT NOT NULL,
+    option_a VARCHAR(255) NOT NULL,
+    option_b VARCHAR(255) NOT NULL,
+    option_c VARCHAR(255) NOT NULL,
+    correct_option CHAR(1) NOT NULL,
+    explanation TEXT,
+    FOREIGN KEY (chapter_id) REFERENCES chapters(id)
+);
+

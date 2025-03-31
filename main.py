@@ -58,8 +58,9 @@ def main_menu(user_manager):
         print("3. Business Planning & Management")
         print("4. Accessing Funding & Loans")
         print("5. Marketing & Branding")
-        print("6. View Profile")
-        print("7. Logout")
+        print("6. Assess yourself")
+        print("7. View Profile")
+        print("8. Logout")
         
         choice = get_user_input("\nEnter your choice (1-7): ", int)
         
@@ -69,7 +70,7 @@ def main_menu(user_manager):
         elif choice == 2:
             print("\nBudgeting & Savings module selected")
             # Implement module functionality
-        elif choice == 6:
+        elif choice == 7:
             user = user_manager.get_current_user()
             print("\n" + "-"*50)
             print("YOUR PROFILE")
@@ -81,7 +82,7 @@ def main_menu(user_manager):
             if user['business_interest']:
                 print(f"Business Interest: {user['business_interest']}")
             print("-"*50)
-        elif choice == 7:
+        elif choice == 8:
             user_manager.logout()
             print("You have been logged out.")
             break
