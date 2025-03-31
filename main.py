@@ -55,75 +55,60 @@ def main_menu(user_manager):
         print("="*50)
         print("\n1. Financial Literacy")
         print("2. Budgeting & Savings")
-        print("3. Business Planning & Management")
-        print("4. Accessing Funding & Loans")
-        print("5. Marketing & Branding")
-        print("6. Assess yourself")
-        print("7. View Profile")
-        print("8. Logout")
         
-        choice = get_user_input("\nEnter your choice (1-7): ", int)
-        
-        if choice == 1:
-            print("\nFinancial Literacy module selected")
-            # Implement module functionality
-        elif choice == 2:
-            print("\nBudgeting & Savings module selected")
-            # Implement module functionality
-        elif choice == 4:
-            display_chapters(user_manager, "Accessing Funding & Loans")
-        elif choice == 7:
-            user = user_manager.get_current_user()
-            print("\n" + "-"*50)
-            print("YOUR PROFILE")
-            print("-"*50)
-            print(f"Email: {user['email']}")
-            print(f"Name: {user['name']}")
-            if user['age']:
-                print(f"Age: {user['age']}")
-            if user['business_interest']:
-                print(f"Business Interest: {user['business_interest']}")
-            print("-"*50)
-        elif choice == 8:
-            user_manager.logout()
-            print("You have been logged out.")
-            break
-        else:
-            print("Module coming soon!")
-            
-def display_chapters(user_manager, module_name):
-    print(f"\nFetching chapters for {module_name}...\n")
-    chapters = user_manager.get_chapters_by_module(module_name)
-
-    if not chapters:
-        print("No chapters found.")
-        return
+def budgeting_and_savings():
+    print("\n" + "-"*50)
+    print("BUDGETING & SAVINGS")
+    print("-"*50)
     
-    for ch in chapters:
-        print(f"{ch['chapter_number']}. {ch['title']}")
-
-    choice = get_user_input("\nEnter the chapter number to read or 0 to go back: ", int)
-
-    if choice == 0:
-        return
-
-    selected_chapter = next((ch for ch in chapters if ch["chapter_number"] == choice), None)
+    income = get_user_input("Enter your monthly income: ", float)
+    expenses = get_user_input("Enter your total monthly expenses: ", float)
+    savings_goal = get_user_input("Enter your savings goal for the month: ", float)
     
-    if selected_chapter:
-        display_chapter_content(user_manager, selected_chapter["id"])
+    remaining_budget = income - expenses
+    if remaining_budget >= savings_goal:
+        print(f"\nYou can save your goal of ${savings_goal:.2f} this month!")
     else:
-        print("Invalid choice.")
-
-def display_chapter_content(user_manager, chapter_id):
-    print("\nLoading content...\n")
-    content = user_manager.get_content_by_chapter(chapter_id)
-
-    if not content:
-        print("No content available.")
-        return
+        print(f"\nYou need to adjust your budget. You can only save ${remaining_budget:.2f} this month.")
+        
+    # Correcting the indentation and placement of the main menu options
+    print("3. Business Planning & Management")
+    print("4. Accessing Funding & Loans")
+    print("5. Marketing & Branding")
+    print("6. Assess yourself")
+    print("7. View Profile")
+    print("8. Logout")
     
-    for item in content:
-        print(f"[{item['content_type'].capitalize()}] {item['content_text']}\n")
+    choice = get_user_input("\nEnter your choice (1-8): ", int)
+    
+    if choice == 1:
+        print("\nFinancial Literacy module selected")
+        # Implement module functionality
+    elif choice == 2:
+        budgeting_and_savings()
+    elif choice == 7:
+        user = user_manager.get_current_user()
+        print("\n" + "-"*50)
+        print("YOUR PROFILE")
+        print("-"*50)
+        print(f"Email: {user['email']}")
+        print(f"Name: {user['name']}")
+        if user['age']:
+            print(f"Age: {user['age']}")
+        if user['business_interest']:
+            print(f"Business Interest: {user['business_interest']}")
+        print("-"*50)
+    elif choice == 8:
+        user_manager.logout()
+        print("You have been logged out.")
+       
+    else:
+        print("Module coming soon!")
+
+
+
+
+
 
 def main():
     db = Database()
@@ -151,5 +136,5 @@ def main():
     finally:
         db.disconnect()
 
-if __name__ == "__main__":  
+if __name__ == "__main__":
     main()
