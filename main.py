@@ -72,6 +72,8 @@ def main_menu(user_manager, db):  # Add db parameter here
             display_chapters(user_manager, "Business Planning & Management")
         elif choice == 4:
             display_chapters(user_manager, "Accessing Funding & Loans")
+        elif choice == 5:
+            display_chapters(user_manager, "Marketing & Branding")
         elif choice == 6:
             assess_yourself(user_manager)
 
