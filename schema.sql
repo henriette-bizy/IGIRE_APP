@@ -53,3 +53,16 @@ CREATE TABLE questions (
     FOREIGN KEY (chapter_id) REFERENCES chapters(id)
 );
 
+-- Topic progress table
+CREATE TABLE progress (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    module VARCHAR(50) NOT NULL,
+    topic_id INT NOT NULL,
+    score INT DEFAULT 0,
+    completed BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_progress (user_id, module, topic_id)
+);
+
