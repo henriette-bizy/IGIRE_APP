@@ -1,5 +1,5 @@
-# main.py
 from database.database import Database, User
+
 
 def display_welcome():
     print("\n" + "="*50)
@@ -48,7 +48,7 @@ def login_flow(user_manager):
     print(f"\n==> {message}")
     return success
 
-def main_menu(user_manager):
+def main_menu(user_manager, db):  # Add db parameter here
     while True:
         print("\n" + "="*50)
         print("MAIN MENU")
@@ -62,18 +62,19 @@ def main_menu(user_manager):
         print("7. View Profile")
         print("8. Logout")
         
-        choice = get_user_input("\nEnter your choice (1-7): ", int)
+        choice = get_user_input("\nEnter your choice (1-8): ", int)
         
         if choice == 1:
             print("\nFinancial Literacy module selected")
-            # Implement module functionality
         elif choice == 2:
             print("\nBudgeting & Savings module selected")
-            # Implement module functionality
+        elif choice == 3:
+            display_chapters(user_manager, "Business Planning & Management")
         elif choice == 4:
             display_chapters(user_manager, "Accessing Funding & Loans")
         elif choice == 6:
             assess_yourself(user_manager)
+
 
         elif choice == 7:
             user = user_manager.get_current_user()
@@ -196,12 +197,11 @@ def main():
             
             if choice == 1:
                 if registration_flow(user_manager):
-                    # After successful registration, proceed to login
                     if login_flow(user_manager):
-                        main_menu(user_manager)
+                        main_menu(user_manager, db)  # Pass db here
             elif choice == 2:
                 if login_flow(user_manager):
-                    main_menu(user_manager)
+                    main_menu(user_manager, db)  # Pass db here
             elif choice == 3:
                 print("\nThank you for using IGIRE. Goodbye!")
                 break

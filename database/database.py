@@ -164,7 +164,7 @@ class Database:
             self.connection = mysql.connector.connect(
                 host="127.0.0.1",
                 user="root",
-                password="", # replace with ur password
+                password="dearmama", # replace with ur password
                 port=3306,
                 database="igire",  # Connect directly to our database
                 use_pure=True,
@@ -178,6 +178,25 @@ class Database:
         except Error as e:
             print(f"Error connecting to MySQL: {e}")
             raise
+
+    def fetch_one(self, query, params=None):
+        """Execute a query and return one row"""
+        try:
+            self.cursor.execute(query, params)
+            return self.cursor.fetchone()
+        except Error as e:
+            print(f"Error executing query: {e}")
+            return None
+
+    def execute(self, query, params=None):
+        """Execute a query and commit changes"""
+        try:
+            self.cursor.execute(query, params)
+            self.connection.commit()
+            return True
+        except Error as e:
+            print(f"Error executing query: {e}")
+            return False
 
     def commit(self):
         if self.connection and self.connection.is_connected():

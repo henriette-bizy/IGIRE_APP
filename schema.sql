@@ -191,3 +191,115 @@ VALUES
     'By firing all employees', 
     'A', 
     'Consolidating debt helps businesses lower their overall interest payments and improve cash flow management.');
+
+
+-- Insert Business Planning Module
+INSERT INTO modules (name, description) 
+VALUES ('Business Planning & Management', 'Learn essential business planning skills and management strategies for your enterprise.');
+
+SET @module_id = (SELECT id FROM modules WHERE name = 'Business Planning & Management' LIMIT 1);
+
+-- Insert Chapters
+INSERT INTO chapters (module_id, chapter_number, title, description) VALUES
+(@module_id, 1, 'Business Model Canvas', 'Understanding and creating your business model using the canvas framework'),
+(@module_id, 2, 'Market Analysis', 'Learn how to analyze your target market and competition'),
+(@module_id, 3, 'Financial Planning', 'Essential financial planning and management for your business'),
+(@module_id, 4, 'Operations Management', 'Setting up and managing business operations effectively'),
+(@module_id, 5, 'Risk Assessment', 'Identifying and managing business risks');
+
+-- Reset chapter variables specifically for Business Planning module
+SET @ch1 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 1 LIMIT 1);
+SET @ch2 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 2 LIMIT 1);
+SET @ch3 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 3 LIMIT 1);
+SET @ch4 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 4 LIMIT 1);
+SET @ch5 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 5 LIMIT 1);
+
+-- Questions for Business Planning & Management chapters
+
+-- Chapter 1: Business Model Canvas
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) 
+VALUES 
+(@ch1, 'What is the primary purpose of the Business Model Canvas?', 
+    'To design a company logo', 
+    'To visualize and develop a business model', 
+    'To hire employees', 
+    'B', 
+    'The Business Model Canvas helps visualize and structure all key elements of a business model.');
+
+-- Chapter 2: Market Analysis
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) 
+VALUES 
+(@ch2, 'Why is market analysis important?', 
+    'To identify market opportunities and challenges', 
+    'To design business cards', 
+    'To hire employees', 
+    'A', 
+    'Market analysis helps businesses understand opportunities and potential challenges in their target market.');
+
+-- Chapter 3: Financial Planning
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) 
+VALUES 
+(@ch3, 'What is a key component of financial planning?', 
+    'Choosing office furniture', 
+    'Cash flow management', 
+    'Selecting a company name', 
+    'B', 
+    'Cash flow management is crucial for maintaining financial health and supporting growth.');
+
+-- Chapter 4: Operations Management
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) 
+VALUES 
+(@ch4, 'What does operations management involve?', 
+    'Managing daily business activities', 
+    'Planning office parties', 
+    'Designing logos', 
+    'A', 
+    'Operations management involves organizing and overseeing daily business activities.');
+
+-- Chapter 5: Risk Assessment
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) 
+VALUES 
+(@ch5, 'What is the purpose of risk assessment?', 
+    'To avoid all business activities', 
+    'To identify and manage potential risks', 
+    'To increase risks', 
+    'B', 
+    'Risk assessment helps identify and develop strategies to manage potential business risks.');
+
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation)
+VALUES (@ch1, 'Which element is NOT part of the Business Model Canvas?', 
+    'Customer Segments', 
+    'Employee Salaries', 
+    'Value Propositions', 
+    'B', 
+    'Employee Salaries is not one of the nine elements of the Business Model Canvas.');
+
+-- Continue with other questions in the same pattern...
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch1, 'text', 'The Business Model Canvas is a strategic tool that helps visualize and develop your business model. It consists of nine key elements: Customer Segments, Value Propositions, Channels, Customer Relationships, Revenue Streams, Key Resources, Key Activities, Key Partnerships, and Cost Structure.', 1),
+(@ch1, 'example', 'A local bakery uses the Business Model Canvas to identify their key customers (working professionals), value proposition (fresh, organic bread), and distribution channels (local delivery service).', 2),
+(@ch1, 'tip', 'Start with your customer segments and value proposition, as these form the foundation of your business model.', 3);
+
+-- Chapter 2: Market Analysis
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch2, 'text', 'Market analysis involves researching your target market, understanding customer needs, and analyzing competitors. This helps identify market opportunities and potential challenges.', 1),
+(@ch2, 'example', 'A clothing boutique conducts market research and discovers an underserved niche for sustainable fashion in their area.', 2),
+(@ch2, 'tip', 'Regularly update your market analysis to stay current with changing customer needs and market trends.', 3);
+
+-- Chapter 3: Financial Planning
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch3, 'text', 'Financial planning involves budgeting, forecasting, and managing cash flow. It helps ensure your business remains financially healthy and can support growth.', 1),
+(@ch3, 'example', 'A restaurant owner creates detailed monthly budgets and cash flow projections to manage seasonal fluctuations in business.', 2),
+(@ch3, 'tip', 'Keep detailed financial records and regularly review your financial performance against projections.', 3);
+
+-- Chapter 4: Operations Management
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch4, 'text', 'Operations management involves organizing and overseeing daily business activities. This includes managing resources, processes, and quality control.', 1),
+(@ch4, 'example', 'A small manufacturing business implements a quality control system to reduce waste and improve product consistency.', 2),
+(@ch4, 'tip', 'Document your operational procedures to maintain consistency and train new employees effectively.', 3);
+
+-- Chapter 5: Risk Assessment
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch5, 'text', 'Risk assessment involves identifying potential risks to your business and developing strategies to manage them. This includes financial, operational, and market risks.', 1),
+(@ch5, 'example', 'A retail store develops a contingency plan for supply chain disruptions after analyzing potential risks.', 2),
+(@ch5, 'tip', 'Regularly review and update your risk management strategies as your business grows and changes.', 3);
