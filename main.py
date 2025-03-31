@@ -65,17 +65,17 @@ def main_menu(user_manager, db):  # Add db parameter here
         choice = get_user_input("\nEnter your choice (1-8): ", int)
         
         if choice == 1:
-            print("\nFinancial Literacy module selected")
+            display_chapters(user_manager, "Financial Literacy")
         elif choice == 2:
             print("\nBudgeting & Savings module selected")
         elif choice == 3:
             display_chapters(user_manager, "Business Planning & Management")
         elif choice == 4:
             display_chapters(user_manager, "Accessing Funding & Loans")
+        elif choice == 5:
+            print("\nMarketing & Branding module selected")
         elif choice == 6:
             assess_yourself(user_manager)
-
-
         elif choice == 7:
             user = user_manager.get_current_user()
             print("\n" + "-"*50)

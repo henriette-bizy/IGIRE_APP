@@ -303,3 +303,86 @@ INSERT INTO content (chapter_id, content_type, content_text, display_order) VALU
 (@ch5, 'text', 'Risk assessment involves identifying potential risks to your business and developing strategies to manage them. This includes financial, operational, and market risks.', 1),
 (@ch5, 'example', 'A retail store develops a contingency plan for supply chain disruptions after analyzing potential risks.', 2),
 (@ch5, 'tip', 'Regularly review and update your risk management strategies as your business grows and changes.', 3);
+
+-- Insert content for Financial Literacy module
+
+-- Chapter 1: Understanding Basic Financial Concepts
+SET @module_id = (SELECT id FROM modules WHERE name = 'Financial Literacy' LIMIT 1);
+SET @ch1 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 1 LIMIT 1);
+
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch1, 'text', 'Financial literacy is the ability to understand and effectively use various financial skills, including personal financial management, budgeting, and investing. It is crucial for making informed decisions about money.', 1),
+(@ch1, 'example', 'Understanding the difference between saving and investing can help you grow your wealth over time.', 2),
+(@ch1, 'tip', 'Start tracking your expenses and income to get a clear picture of your financial situation.', 3);
+
+-- Chapter 2: Budgeting and Expense Tracking
+SET @ch2 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 2 LIMIT 1);
+
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch2, 'text', 'Budgeting involves creating a plan for how you will spend your money. Expense tracking helps you monitor where your money goes and identify areas where you can cut back.', 1),
+(@ch2, 'example', 'Using a budgeting app or spreadsheet can simplify the process of tracking your expenses and sticking to your budget.', 2),
+(@ch2, 'tip', 'Review your budget regularly and make adjustments as needed to stay on track.', 3);
+
+-- Chapter 3: Savings and Investment Basics
+SET @ch3 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 3 LIMIT 1);
+
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch3, 'text', 'Saving involves setting aside money for future use, while investing involves using money to potentially grow your wealth over time. Understanding the different types of savings and investment accounts is essential.', 1),
+(@ch3, 'example', 'Investing in a diversified portfolio of stocks and bonds can help you achieve long-term financial goals.', 2),
+(@ch3, 'tip', 'Start saving and investing early to take advantage of compound interest.', 3);
+
+-- Chapter 4: Understanding Credit and Debt
+SET @ch4 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 4 LIMIT 1);
+
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch4, 'text', 'Credit is the ability to borrow money or access goods and services with the understanding that you will pay later. Debt is the amount of money you owe to a lender. Understanding how credit and debt work is crucial for financial health.', 1),
+(@ch4, 'example', 'Maintaining a good credit score can help you get better interest rates on loans and credit cards.', 2),
+(@ch4, 'tip', 'Pay your bills on time and avoid taking on more debt than you can handle.', 3);
+
+-- Chapter 5: Financial Planning for Business Owners
+SET @ch5 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 5 LIMIT 1);
+
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch5, 'text', 'Financial planning for business owners involves managing business finances, creating financial projections, and securing funding. It is essential for the long-term success of your business.', 1),
+(@ch5, 'example', 'Creating a business plan with realistic financial projections can help you attract investors and secure funding.', 2),
+(@ch5, 'tip', 'Regularly review your financial statements and make adjustments as needed to ensure your business remains profitable.', 3);
+
+-- Questions for Financial Literacy Module
+
+-- Chapter 1: Understanding Basic Financial Concepts
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) VALUES
+(@ch1, 'What is financial literacy?', 'The ability to read financial statements', 'The ability to understand and use financial skills', 'The ability to predict stock market trends', 'B', 'Financial literacy involves understanding and using financial skills for informed decisions.'),
+(@ch1, 'Which of the following is a key component of financial literacy?', 'Advanced calculus', 'Budgeting', 'Astrology', 'B', 'Budgeting is a fundamental skill in financial literacy.');
+
+-- Chapter 2: Budgeting and Expense Tracking
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) VALUES
+(@ch2, 'What is the purpose of budgeting?', 'To spend money without planning', 'To create a plan for spending money', 'To avoid saving money', 'B', 'Budgeting helps plan how to spend money effectively.'),
+(@ch2, 'What does expense tracking help you identify?', 'Areas where you can increase spending', 'Areas where you can reduce spending', 'Areas where you can ignore spending', 'B', 'Expense tracking helps identify areas to cut back on spending.');
+
+-- Chapter 3: Savings and Investment Basics
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) VALUES
+(@ch3, 'What is the difference between saving and investing?', 'Saving is for short-term, investing is for long-term growth', 'Saving is risky, investing is safe', 'Saving is for businesses, investing is for individuals', 'A', 'Saving is for short-term needs, while investing is for long-term growth.'),
+(@ch3, 'What is compound interest?', 'Interest paid only once', 'Interest earned on both the initial deposit and accumulated interest', 'Interest paid to financial advisors', 'B', 'Compound interest helps your money grow faster over time.');
+
+-- Chapter 4: Understanding Credit and Debt
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) VALUES
+(@ch4, 'What is credit?', 'The amount of money you have in your bank account', 'The ability to borrow money or access goods and services with the understanding that you will pay later', 'The total value of your assets', 'B', 'Credit allows you to borrow money or access goods and services on the promise of future payment.'),
+(@ch4, 'Why is a good credit score important?', 'It helps you get better interest rates', 'It helps you avoid paying taxes', 'It helps you win the lottery', 'A', 'A good credit score can help you secure better loan and credit card terms.');
+
+-- Chapter 5: Financial Planning for Business Owners
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) VALUES
+(@ch5, 'What is the purpose of financial planning for business owners?', 'To avoid paying taxes', 'To manage business finances and secure funding', 'To ignore financial statements', 'B', 'Financial planning helps manage business finances and secure necessary funding.'),
+(@ch5, 'What can financial projections help a business owner do?', 'Predict the weather', 'Attract investors and secure funding', 'Avoid hiring employees', 'B', 'Financial projections provide a roadmap for financial success and attract investors.');
+
+-- Insert Financial literacy module and chapters
+
+INSERT INTO modules (name, description) VALUES ('Financial Literacy', 'Learn essential financial skills for personal and business success.');
+
+SET @module_id = (SELECT id FROM modules WHERE name = 'Financial Literacy' LIMIT 1);
+
+INSERT INTO chapters (module_id, chapter_number, title, description) VALUES
+(@module_id, 1, 'Understanding Basic Financial Concepts', 'Learn the fundamentals of financial literacy.'),
+(@module_id, 2, 'Budgeting and Expense Tracking', 'Master the art of budgeting and tracking expenses.'),
+(@module_id, 3, 'Savings and Investment Basics', 'Understand the basics of saving and investing.'),
+(@module_id, 4, 'Understanding Credit and Debt', 'Learn how to manage credit and debt effectively.'),
+(@module_id, 5, 'Financial Planning for Business Owners', 'Essential financial planning for business success.');
