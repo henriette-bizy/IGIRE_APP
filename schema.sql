@@ -1,0 +1,13 @@
+CREATE DATABASE IF NOT EXISTS igire;
+USE igire;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(64) NOT NULL,  -- SHA-256 produces 64-character hashes
+    name VARCHAR(100) NOT NULL,
+    age INT,
+    business_interest VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
