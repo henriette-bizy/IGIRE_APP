@@ -117,6 +117,41 @@ class User:
         """
         return self.db.fetch_all(query, (chapter_id,))
 
+    def get_questions_by_chapter(self, chapter_id):
+        """Fetches all questions for a given chapter ID."""
+        query = """
+        SELECT id, question_text, option_a, option_b, option_c, correct_option, explanation
+        FROM questions
+        WHERE chapter_id = %s
+        """
+        self.db.cursor.execute(query, (chapter_id,))
+        questions = self.db.cursor.fetchall()
+
+        print("Debug - Raw Questions:", questions)  # Check data format
+
+        if not questions:
+            print(f"No questions found for chapter {chapter_id}")
+            return []
+
+        # If results are dictionaries, return them directly
+        if isinstance(questions[0], dict):
+            return questions
+        
+        # Otherwise, convert tuples to dictionaries
+        return [
+            {
+                "id": q[0],
+                "question_text": q[1],
+                "option_a": q[2],
+                "option_b": q[3],
+                "option_c": q[4],
+                "correct_option": q[5],
+                "explanation": q[6],
+            }
+            for q in questions
+        ]
+
+
 
 class Database:
     def __init__(self):

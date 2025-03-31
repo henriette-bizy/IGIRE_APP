@@ -106,3 +106,88 @@ INSERT INTO content (chapter_id, content_type, content_text, display_order) VALU
 (@ch5, 'text', 'Effective debt management is essential for maintaining financial health and ensuring business sustainability. Businesses should track their outstanding debts, prioritize high-interest loans, and explore refinancing options when necessary. Having a clear repayment plan helps prevent financial strain and ensures that debt does not hinder business growth.', 1),
 (@ch5, 'example', 'A restaurant owner with multiple loans consolidates their debt under a single lower-interest loan, reducing monthly payments and improving cash flow management.', 2),
 (@ch5, 'tip', 'Prioritize paying off high-interest debt first and negotiate with lenders for better repayment terms if needed.', 3);
+
+
+-- Questions for Chapter 1: Understanding Business Financing
+
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation)
+VALUES 
+(@ch1, 'What is the primary goal of business financing?', 
+    'To increase company expenses', 
+    'To secure funds for starting, operating, or expanding a business', 
+    'To reduce competition in the market', 
+    'B', 
+    'Business financing is used to secure funds to start, operate, or grow a business.'),
+(@ch1, 'Which of the following is NOT a common source of business financing?', 
+    'Loans', 
+    'Personal savings', 
+    'Business competitors', 
+    'C', 
+    'Competitors typically do not provide financing. Common sources include loans, grants, investors, and savings.');
+
+-- Questions for Chapter 2: How to Apply for Business Loans
+
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation)
+VALUES 
+(@ch2, 'What is the key factor lenders assess before approving a business loan?', 
+    'The business logo design', 
+    'Credit history and financial stability', 
+    'The number of employees', 
+    'B', 
+    'Lenders evaluate credit history, financial statements, and cash flow before approving a loan.'),
+(@ch2, 'Which document is crucial when applying for a business loan?', 
+    'A well-structured business plan', 
+    'A list of favorite books', 
+    'A personal diary', 
+    'A', 
+    'A well-structured business plan outlining financial projections, market strategy, and repayment plans is essential.');
+
+-- Questions for Chapter 3: Government Grants & Support
+
+    INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation)
+VALUES 
+(@ch3, 'What is the main advantage of government grants over business loans?', 
+    'Grants do not require repayment', 
+    'Grants are given to all applicants', 
+    'Grants come with fewer eligibility requirements', 
+    'A', 
+    'Unlike loans, grants do not require repayment, making them an attractive financing option.'),
+(@ch3, 'What is a key requirement when applying for most government grants?', 
+    'Having a registered business', 
+    'Having a high personal income', 
+    'Selling a certain number of products', 
+    'A', 
+    'Many grants require businesses to be officially registered and meet specific criteria.');
+
+
+-- Questions for Chapter 4: Pitching to Investors
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation)
+VALUES 
+(@ch4, 'What is a crucial element of a strong business pitch to investors?', 
+    'A clear value proposition', 
+    'A long and complicated financial report', 
+    'A large team of employees', 
+    'A', 
+    'Investors look for a clear value proposition that shows how a business stands out in the market.'),
+(@ch4, 'Which factor is most important for investors when considering funding a startup?', 
+    'The founder’s fashion style', 
+    'Market potential and financial viability', 
+    'The company’s office location', 
+    'B', 
+    'Investors prioritize businesses with strong market potential and solid financial viability.');
+
+-- Questions for Chapter 5: Managing Business Debt
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation)
+VALUES 
+(@ch5, 'What is a good strategy for managing business debt?', 
+    'Prioritizing high-interest loans', 
+    'Ignoring debt until it becomes urgent', 
+    'Taking on more loans to pay off existing ones', 
+    'A', 
+    'Businesses should prioritize paying off high-interest loans first to reduce financial burden.'),
+(@ch5, 'How can a business reduce its debt repayment burden?', 
+    'By consolidating debt into a single lower-interest loan', 
+    'By avoiding all business expenses', 
+    'By firing all employees', 
+    'A', 
+    'Consolidating debt helps businesses lower their overall interest payments and improve cash flow management.');
