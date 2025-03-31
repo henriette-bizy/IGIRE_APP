@@ -306,9 +306,18 @@ INSERT INTO content (chapter_id, content_type, content_text, display_order) VALU
 
 -- Insert content for Financial Literacy module
 
--- Chapter 1: Understanding Basic Financial Concepts
+INSERT INTO modules (name, description) VALUES ('Financial Literacy', 'Learn essential financial skills for personal and business success.');
+
 SET @module_id = (SELECT id FROM modules WHERE name = 'Financial Literacy' LIMIT 1);
-SET @ch1 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 1 LIMIT 1);
+
+INSERT INTO chapters (module_id, chapter_number, title, description) VALUES
+(@module_id, 1, 'Understanding Basic Financial Concepts', 'Learn the fundamentals of financial literacy.'),
+(@module_id, 2, 'Budgeting and Expense Tracking', 'Master the art of budgeting and tracking expenses.'),
+(@module_id, 3, 'Savings and Investment Basics', 'Understand the basics of saving and investing.'),
+(@module_id, 4, 'Understanding Credit and Debt', 'Learn how to manage credit and debt effectively.'),
+(@module_id, 5, 'Financial Planning for Business Owners', 'Essential financial planning for business success.');
+
+SET @ch1 = (SELECT id FROM chapters WHERE module_id = @module_id AND title = 'Understanding Basic Financial Concepts' LIMIT 1);
 
 INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
 (@ch1, 'text', 'Financial literacy is the ability to understand and effectively use various financial skills, including personal financial management, budgeting, and investing. It is crucial for making informed decisions about money.', 1),
@@ -316,7 +325,7 @@ INSERT INTO content (chapter_id, content_type, content_text, display_order) VALU
 (@ch1, 'tip', 'Start tracking your expenses and income to get a clear picture of your financial situation.', 3);
 
 -- Chapter 2: Budgeting and Expense Tracking
-SET @ch2 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 2 LIMIT 1);
+SET @ch2 = (SELECT id FROM chapters WHERE module_id = @module_id AND title = 'Budgeting and Expense Tracking' LIMIT 1);
 
 INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
 (@ch2, 'text', 'Budgeting involves creating a plan for how you will spend your money. Expense tracking helps you monitor where your money goes and identify areas where you can cut back.', 1),
@@ -324,7 +333,7 @@ INSERT INTO content (chapter_id, content_type, content_text, display_order) VALU
 (@ch2, 'tip', 'Review your budget regularly and make adjustments as needed to stay on track.', 3);
 
 -- Chapter 3: Savings and Investment Basics
-SET @ch3 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 3 LIMIT 1);
+SET @ch3 = (SELECT id FROM chapters WHERE module_id = @module_id AND title = 'Savings and Investment Basics' LIMIT 1);
 
 INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
 (@ch3, 'text', 'Saving involves setting aside money for future use, while investing involves using money to potentially grow your wealth over time. Understanding the different types of savings and investment accounts is essential.', 1),
@@ -332,7 +341,7 @@ INSERT INTO content (chapter_id, content_type, content_text, display_order) VALU
 (@ch3, 'tip', 'Start saving and investing early to take advantage of compound interest.', 3);
 
 -- Chapter 4: Understanding Credit and Debt
-SET @ch4 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 4 LIMIT 1);
+SET @ch4 = (SELECT id FROM chapters WHERE module_id = @module_id AND title = 'Understanding Credit and Debt' LIMIT 1);
 
 INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
 (@ch4, 'text', 'Credit is the ability to borrow money or access goods and services with the understanding that you will pay later. Debt is the amount of money you owe to a lender. Understanding how credit and debt work is crucial for financial health.', 1),
@@ -340,7 +349,7 @@ INSERT INTO content (chapter_id, content_type, content_text, display_order) VALU
 (@ch4, 'tip', 'Pay your bills on time and avoid taking on more debt than you can handle.', 3);
 
 -- Chapter 5: Financial Planning for Business Owners
-SET @ch5 = (SELECT id FROM chapters WHERE module_id = @module_id AND chapter_number = 5 LIMIT 1);
+SET @ch5 = (SELECT id FROM chapters WHERE module_id = @module_id AND title = 'Financial Planning for Business Owners' LIMIT 1);
 
 INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
 (@ch5, 'text', 'Financial planning for business owners involves managing business finances, creating financial projections, and securing funding. It is essential for the long-term success of your business.', 1),
@@ -374,15 +383,154 @@ INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, 
 (@ch5, 'What is the purpose of financial planning for business owners?', 'To avoid paying taxes', 'To manage business finances and secure funding', 'To ignore financial statements', 'B', 'Financial planning helps manage business finances and secure necessary funding.'),
 (@ch5, 'What can financial projections help a business owner do?', 'Predict the weather', 'Attract investors and secure funding', 'Avoid hiring employees', 'B', 'Financial projections provide a roadmap for financial success and attract investors.');
 
--- Insert Financial literacy module and chapters
+-- Marketing & Branding (new content)
+SET @module_id = (SELECT id FROM modules WHERE name = 'Marketing & Branding' LIMIT 1);
 
-INSERT INTO modules (name, description) VALUES ('Financial Literacy', 'Learn essential financial skills for personal and business success.');
+-- Chapters
+INSERT INTO chapters (module_id, chapter_number, title, description) VALUES
+(@module_id, 1, 'Brand Identity Development', 'Learn how to create a strong brand identity.'),
+(@module_id, 2, 'Digital Marketing Strategies', 'Master online marketing tools like social media and SEO.'),
+(@module_id, 3, 'Customer Engagement', 'Build lasting relationships with your target audience.'),
+(@module_id, 4, 'Content Marketing', 'Create valuable content to attract and retain customers.'),
+(@module_id, 5, 'Measuring Marketing Success', 'Track and analyze marketing campaign performance.');
 
-SET @module_id = (SELECT id FROM modules WHERE name = 'Financial Literacy' LIMIT 1);
+-- Chapter Variables
+SET @ch1 = (SELECT id FROM chapters WHERE title = 'Brand Identity Development' LIMIT 1);
+SET @ch2 = (SELECT id FROM chapters WHERE title = 'Digital Marketing Strategies' LIMIT 1);
+SET @ch3 = (SELECT id FROM chapters WHERE title = 'Customer Engagement' LIMIT 1);
+SET @ch4 = (SELECT id FROM chapters WHERE title = 'Content Marketing' LIMIT 1);
+SET @ch5 = (SELECT id FROM chapters WHERE title = 'Measuring Marketing Success' LIMIT 1);
+
+-- Content
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch1, 'text', 'Brand identity includes your logo, colors, typography, and tone of voice. It reflects your business values and helps customers recognize you.', 1),
+(@ch1, 'example', 'A local coffee shop uses earthy colors and a friendly tone to appeal to eco-conscious consumers.', 2),
+(@ch1, 'tip', 'Ensure your brand identity aligns with your target audience’s preferences.', 3),
+
+(@ch2, 'text', 'Digital marketing includes SEO, social media, and email campaigns. Choose platforms where your audience is most active.', 1),
+(@ch2, 'example', 'A handmade jewelry business uses Instagram to showcase products and engage with customers.', 2),
+(@ch2, 'tip', 'Focus on 1-2 platforms initially to avoid spreading resources too thin.', 3),
+
+(@ch3, 'text', 'Engage customers through personalized communication, loyalty programs, and feedback loops.', 1),
+(@ch3, 'example', 'A bakery offers a loyalty card where customers earn a free item after 10 purchases.', 2),
+(@ch3, 'tip', 'Respond promptly to customer inquiries to build trust.', 3),
+
+(@ch4, 'text', 'Create blogs, videos, or infographics that provide value to your audience and position you as an expert.', 1),
+(@ch4, 'example', 'A fitness trainer shares free workout videos on YouTube to attract clients.', 2),
+(@ch4, 'tip', 'Repurpose content across multiple platforms for wider reach.', 3),
+
+(@ch5, 'text', 'Use metrics like website traffic, conversion rates, and social media engagement to evaluate campaigns.', 1),
+(@ch5, 'example', 'An online store uses Google Analytics to track which marketing channels drive the most sales.', 2),
+(@ch5, 'tip', 'A/B test different strategies to identify what works best.', 3);
+
+-- Quiz Questions
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) 
+VALUES 
+(@ch1, 'What is a key element of brand identity?', 'Employee salaries', 'Logo and colors', 'Office location', 'B', 'Logo, colors, and typography are core components of brand identity.'),
+(@ch2, 'Which platform is best for visual product showcases?', 'Instagram', 'LinkedIn', 'Email newsletters', 'A', 'Instagram is ideal for visual content like product photos.'),
+(@ch3, 'What improves customer loyalty?', 'Ignoring feedback', 'Loyalty programs', 'Increasing prices', 'B', 'Loyalty programs incentivize repeat purchases.'),
+(@ch4, 'What is a benefit of content marketing?', 'Reducing staff', 'Building authority in your niche', 'Selling products faster', 'B', 'Content marketing establishes your business as a trusted expert.'),
+(@ch5, 'Which tool tracks website traffic?', 'Google Analytics', 'Microsoft Word', 'Photoshop', 'A', 'Google Analytics is a standard tool for measuring web traffic.');
+
+-- ====== MARKETING & BRANDING MODULE ====== --
+INSERT INTO modules (name, description) 
+VALUES ('Marketing & Branding', 'Learn essential marketing strategies and brand-building techniques.');
+
+-- Chapters
+SET @module_id = (SELECT id FROM modules WHERE name = 'Marketing & Branding' LIMIT 1);
 
 INSERT INTO chapters (module_id, chapter_number, title, description) VALUES
-(@module_id, 1, 'Understanding Basic Financial Concepts', 'Learn the fundamentals of financial literacy.'),
-(@module_id, 2, 'Budgeting and Expense Tracking', 'Master the art of budgeting and tracking expenses.'),
-(@module_id, 3, 'Savings and Investment Basics', 'Understand the basics of saving and investing.'),
-(@module_id, 4, 'Understanding Credit and Debt', 'Learn how to manage credit and debt effectively.'),
-(@module_id, 5, 'Financial Planning for Business Owners', 'Essential financial planning for business success.');
+(@module_id, 1, 'Brand Identity Development', 'Learn how to create a strong brand identity.'),
+(@module_id, 2, 'Digital Marketing Strategies', 'Master online marketing tools like social media and SEO.'),
+(@module_id, 3, 'Customer Engagement', 'Build lasting relationships with your target audience.'),
+(@module_id, 4, 'Content Marketing', 'Create valuable content to attract and retain customers.'),
+(@module_id, 5, 'Measuring Marketing Success', 'Track and analyze marketing campaign performance.');
+
+-- Chapter Variables
+SET @ch1 = (SELECT id FROM chapters WHERE title = 'Brand Identity Development' LIMIT 1);
+SET @ch2 = (SELECT id FROM chapters WHERE title = 'Digital Marketing Strategies' LIMIT 1);
+SET @ch3 = (SELECT id FROM chapters WHERE title = 'Customer Engagement' LIMIT 1);
+SET @ch4 = (SELECT id FROM chapters WHERE title = 'Content Marketing' LIMIT 1);
+SET @ch5 = (SELECT id FROM chapters WHERE title = 'Measuring Marketing Success' LIMIT 1);
+
+-- ====== Marketing & Branding Content ====== --
+-- Chapter 1: Brand Identity Development
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch1, 'text', 'Brand identity includes your logo, colors, typography, and tone of voice. It reflects your business values and helps customers recognize you.', 1),
+(@ch1, 'example', 'A local coffee shop uses earthy colors and a friendly tone to appeal to eco-conscious consumers.', 2),
+(@ch1, 'tip', 'Ensure your brand identity aligns with your target audience’s preferences.', 3);
+
+-- Chapter 2: Digital Marketing Strategies
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch2, 'text', 'Digital marketing includes SEO, social media, and email campaigns. Choose platforms where your audience is most active.', 1),
+(@ch2, 'example', 'A handmade jewelry business uses Instagram to showcase products and engage with customers.', 2),
+(@ch2, 'tip', 'Focus on 1-2 platforms initially to avoid spreading resources too thin.', 3);
+
+-- Chapter 3: Customer Engagement
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch3, 'text', 'Engage customers through personalized communication, loyalty programs, and feedback loops.', 1),
+(@ch3, 'example', 'A bakery offers a loyalty card where customers earn a free item after 10 purchases.', 2),
+(@ch3, 'tip', 'Respond promptly to customer inquiries to build trust.', 3);
+
+-- Chapter 4: Content Marketing
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch4, 'text', 'Create blogs, videos, or infographics that provide value to your audience and position you as an expert.', 1),
+(@ch4, 'example', 'A fitness trainer shares free workout videos on YouTube to attract clients.', 2),
+(@ch4, 'tip', 'Repurpose content across multiple platforms for wider reach.', 3);
+
+-- Chapter 5: Measuring Marketing Success
+INSERT INTO content (chapter_id, content_type, content_text, display_order) VALUES
+(@ch5, 'text', 'Use metrics like website traffic, conversion rates, and social media engagement to evaluate campaigns.', 1),
+(@ch5, 'example', 'An online store uses Google Analytics to track which marketing channels drive the most sales.', 2),
+(@ch5, 'tip', 'A/B test different strategies to identify what works best.', 3);
+
+-- ====== Marketing & Branding Quiz Questions ====== --
+-- Chapter 1: Brand Identity Development
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) 
+VALUES 
+(@ch1, 'What is a key element of brand identity?', 
+    'Employee salaries', 
+    'Logo and colors', 
+    'Office location', 
+    'B', 
+    'Logo, colors, and typography are core components of brand identity.');
+
+-- Chapter 2: Digital Marketing Strategies
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) 
+VALUES 
+(@ch2, 'Which platform is best for visual product showcases?', 
+    'Instagram', 
+    'LinkedIn', 
+    'Email newsletters', 
+    'A', 
+    'Instagram is ideal for visual content like product photos.');
+
+-- Chapter 3: Customer Engagement
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) 
+VALUES 
+(@ch3, 'What improves customer loyalty?', 
+    'Ignoring feedback', 
+    'Loyalty programs', 
+    'Increasing prices', 
+    'B', 
+    'Loyalty programs incentivize repeat purchases.');
+
+-- Chapter 4: Content Marketing
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) 
+VALUES 
+(@ch4, 'What is a benefit of content marketing?', 
+    'Reducing staff', 
+    'Building authority in your niche', 
+    'Selling products faster', 
+    'B', 
+    'Content marketing establishes your business as a trusted expert.');
+
+-- Chapter 5: Measuring Marketing Success
+INSERT INTO questions (chapter_id, question_text, option_a, option_b, option_c, correct_option, explanation) 
+VALUES 
+(@ch5, 'Which tool tracks website traffic?', 
+    'Google Analytics', 
+    'Microsoft Word', 
+    'Photoshop', 
+    'A', 
+    'Google Analytics is a standard tool for measuring web traffic.');
