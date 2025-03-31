@@ -1,4 +1,3 @@
-# main.py
 from database.database import Database, User
 
 def display_welcome():
@@ -62,14 +61,13 @@ def main_menu(user_manager):
         print("7. View Profile")
         print("8. Logout")
         
-        choice = get_user_input("\nEnter your choice (1-7): ", int)
+        choice = get_user_input("\nEnter your choice (1-8): ", int)
         
         if choice == 1:
             print("\nFinancial Literacy module selected")
             # Implement module functionality
         elif choice == 2:
-            print("\nBudgeting & Savings module selected")
-            # Implement module functionality
+            budgeting_and_savings_menu(user_manager)
         elif choice == 4:
             display_chapters(user_manager, "Accessing Funding & Loans")
         elif choice == 6:
